@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap JS (Optional but useful for Bootstrap components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card" style="width: 25rem; outline:none;">
+            <div class="card-body">
+                <h5 class="card-title">Task Details</h5>
+                <p class="card-text">Title: <span th:text="${task.title}"></span></p>
+                <p class="card-text">Description: <span th:text="${task.description}"></span></p>
+                <p class="card-text">Start date: <span th:text="${task.start_date}"></span></p>
+                <p class="card-text">Finish date: <span th:text="${task.finish_date}"></span></p>
+                <p class="card-text">Completed: <span th:text="${task.completed} ? 'Yes' : 'No'"></span></p>
+                <a class="btn btn-link" href="/tasks">Back to Tasks</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

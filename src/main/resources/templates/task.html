@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap JS (Optional but useful for Bootstrap components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-5">Tasks</h1>
+    <table class="table table-striped mt-3">
+        <thead class="thead-dark">
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Starting date</th>
+            <th>Finish date</th>
+            <th>Completed</th>
+            <th>Actions</th>
+            <th>Set completed</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="task : ${tasks}" th:style="${task.completed} ? 'background-color: #d4edda;' : ''">
+            <td th:text="${task.title}"></td>
+            <td th:text="${task.description}"></td>
+            <td th:text="${task.start_date}"></td>
+            <td th:text="${task.finish_date}"></td>
+            <td th:text="${task.completed} ? 'Yes' : 'No'"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/tasks/{id}(id=${task.id})}">View</a>
+                <a class="btn btn-info" th:href="@{/tasks/edit/{id}(id=${task.id})}">Edit</a>
+                <a class="btn btn-danger" th:href="@{/tasks/delete/{id}(id=${task.id})}">Delete</a>
+            </td>
+            <td>
+                <a class="btn btn-success" th:href="@{/tasks/complete/{id}(id=${task.id})}">&#10004;</a>
+                <a class="btn btn-warning" th:href="@{/tasks/unComplete/{id}(id=${task.id})}">&#10006;</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a class="btn btn-link" href="/tasks/new">Add New Task</a>
+</div>
+</body>
+</html>

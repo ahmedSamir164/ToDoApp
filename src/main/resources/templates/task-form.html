@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap-theme.min.css">
+    <!-- Bootstrap JS (Optional but useful for Bootstrap components) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .form-container {
+        background-color: #f8f9fa; /* Light gray background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4"> <!-- 1/3 of the screen on medium and larger screens -->
+            <div class="form-container mt-5">
+                <h2 class="text-center">New Task</h2>
+                <form th:action="@{/tasks}" th:object="${task}" method="post">
+                    <input type="hidden" th:field="*{id}" />
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input class="form-control" id="title" type="text" th:field="*{title}" />
+                        <p class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <input id="description" class="form-control" type="text" th:field="*{description}" />
+                        <p class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+                    </div>
+                    <div class="form-group ">
+                        <label for="startDateInput">Start date</label>
+                        <input class="form-control" id="startDateInput" type="date" th:field="*{start_date}" />
+                        <p class="text-danger" th:if="${#fields.hasErrors('start_date')}" th:errors="*{start_date}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="finishDateInput">Finish date</label>
+                        <input class="form-control" id="finishDateInput" type="date" th:field="*{finish_date}" />
+                        <p class="text-danger" th:if="${#fields.hasErrors('finish_date')}" th:errors="*{finish_date}"></p>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Save</button>
+                    </div>
+                </form>
+                <div class="text-center mt-3">
+                    <a href="/tasks" class="btn btn-link">Go to Tasks Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
